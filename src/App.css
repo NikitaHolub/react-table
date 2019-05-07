@@ -1,33 +1,106 @@
-.App {
+button {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  overflow: visible;
+
+  background: transparent;
+
+  /* inherit font & color from ancestor */
+  color: inherit;
+  font: inherit;
+
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+
+  /* Corrects font smoothing for webkit */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
+}
+
+span {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.Module {
+  position: relative;
+  margin: 60px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+table {
+  border: 1px solid #48aae6;
+  border-spacing: 2px;
+  margin: 1px;
+  position: relative;
+}
+
+td {
+  border: 1px solid #48AAE6;
+  background: #48AAE6;
+}
+
+.OperationButton {
+  width: 50px;
+  height: 50px;
+  margin: 1px;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  opacity: 1;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  vertical-align: middle;
   color: white;
+  font-weight: bold;
+  user-select: none;
+  position: absolute;
 }
 
-.App-link {
-  color: #61dafb;
+.OperationButton:hover{
+  cursor: pointer;
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  opacity: 0.7;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ButtonMinus{
+  border: 2px solid #B20000;
+  background: #B20000;
+  transition: 0.3s;
+}
+
+.ButtonPlus{
+  border: 2px solid #F3A500;
+  background: #F3A500;
+}
+
+.BtnLeft {
+  right: 100%;
+  margin-top: 2px;
+  top: 2px;
+}
+
+.BtnTop {
+  bottom: 100%;
+  left: 2px;
+  margin-left: 2px;
+}
+
+.BtnRight {
+  left: 100%;
+  margin-top: 4px;
+}
+
+.BtnBottom {
+  top: 100%;
+  margin-left: 4px;
 }
