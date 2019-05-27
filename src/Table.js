@@ -6,20 +6,22 @@ class Table extends Component {
   constructor(props) {
     super(props);
 
-    const { initialWidth, initialHeight, cellSize } = props;
+    this.cellSize = {
+      width: `${this.props.cellSize}px`,
+      height: `${this.props.cellSize}px`,
+      minWidth: `${this.props.cellSize}px`,
+    };
+
+    this.timerHideButtons = {};
+
+
     this.state = {
       style: {
-        ButtonMinusRow: {
+        buttonMinusRow: {
           visibility: "hidden",
-          top: "2px",
-          width: `${cellSize}px`,
-          height: `${cellSize}px`,
         },
-        ButtonMinusColumn: {
+        buttonMinusColumn: {
           visibility: "hidden",
-          left: "2px",
-          width: `${cellSize}px`,
-          height: `${cellSize}px`,
         },
       },
 
@@ -28,27 +30,20 @@ class Table extends Component {
       trKey: 1,
       tdKey: 1,
 
-      initialWidth,
-      initialHeight,
-      cellSize: {
-        width: `${cellSize}px`,
-        height: `${cellSize}px`,
-        minWidth: `${cellSize}px`,
-      },
 
       currentRowNum: 0,
       currentColumnNum: 0,
 
-      timerHideButtons: {},
+      
     };
   }
 
-    componentWillMount = () => {
+    componentDidMount = () => {
       const table = [];
       const {
         initialWidth,
         initialHeight,
-      } = this.state;
+      } = this.props;
 
       let {
         trKey,
@@ -154,8 +149,9 @@ class Table extends Component {
     makeTable = () => {
       const {
         table,
-        cellSize,
       } = this.state;
+
+      const cellSize = this.cellSize;
 
       return (
         <tbody>
@@ -260,25 +256,23 @@ class Table extends Component {
     }
 
     setTimerHideButtons = () => {
-      this.setState({
-        timerHideButtons: setTimeout(this.hideMinusButtons, 300),
-      });
+      this.timerHideButtons = setTimeout(this.hideMinusButtons, 300);
     }
 
     clearTimerHideButtons = () => {
-      const { timerHideButtons } = this.state;
-
-      clearTimeout(timerHideButtons);
+      clearTimeout(this.timerHideButtons);
     }
 
     render() {
+      console.log('sss');
       const {
         style: {
           ButtonMinusRow,
           ButtonMinusColumn,
         },
-        cellSize,
       } = this.state;
+
+      const cellSize = this.cellSize;
 
       const {
         className,
@@ -294,7 +288,7 @@ class Table extends Component {
             onMouseOut={() => this.setTimerHideButtons()}
             onClick={() => this.deleteColumn()}
           >
-            <span>-</span>
+            -
           </Button>
 
           <Button
@@ -305,7 +299,7 @@ class Table extends Component {
             onMouseOut={() => this.setTimerHideButtons()}
             onClick={() => this.deleteRow()}
           >
-            <span>-</span>
+            -
           </Button>
 
           <Button
@@ -314,7 +308,7 @@ class Table extends Component {
             style={cellSize}
             onClick={() => this.addRow()}
           >
-            <span>+</span>
+            +
           </Button>
 
           <Button
@@ -323,7 +317,7 @@ class Table extends Component {
             style={cellSize}
             onClick={() => this.addColumn()}
           >
-            <span>+</span>
+            +
           </Button>
 
           <table

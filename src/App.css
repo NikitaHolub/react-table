@@ -1,25 +1,7 @@
-button {
-  border: none;
+body, div, table, tr, td, button  {
   margin: 0;
   padding: 0;
-  width: auto;
-  overflow: visible;
-
-  background: transparent;
-
-  /* inherit font & color from ancestor */
-  color: inherit;
-  font: inherit;
-
-  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-  line-height: normal;
-
-  /* Corrects font smoothing for webkit */
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-
-  /* Corrects inability to style clickable `input` types in iOS */
-  -webkit-appearance: none;
+  border: none;
 }
 
 span {
@@ -54,6 +36,8 @@ td {
   width: 50px;
   height: 50px;
   margin: 1px;
+  font-size: 25px;
+  font-weight: 900;
   transition-property: opacity;
   transition-duration: 0.5s;
   opacity: 1;
@@ -76,6 +60,7 @@ td {
   border: 2px solid #B20000;
   background: #B20000;
   transition: 0.3s;
+  visibility: hidden;
 }
 
 .ButtonPlus{
