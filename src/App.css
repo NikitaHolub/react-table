@@ -4,14 +4,6 @@ body, div, table, tr, td, button  {
   border: none;
 }
 
-span {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 40px;
-  line-height: 40px;
-}
 
 .Module {
   position: relative;

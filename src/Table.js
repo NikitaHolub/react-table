@@ -288,7 +288,7 @@ class Table extends Component {
             onMouseOut={() => this.setTimerHideButtons()}
             onClick={() => this.deleteColumn()}
           >
-            -
+            <div>-</div>
           </Button>
 
           <Button
@@ -299,7 +299,7 @@ class Table extends Component {
             onMouseOut={() => this.setTimerHideButtons()}
             onClick={() => this.deleteRow()}
           >
-            -
+            <div>-</div>
           </Button>
 
           <Button
@@ -308,7 +308,7 @@ class Table extends Component {
             style={cellSize}
             onClick={() => this.addRow()}
           >
-            +
+            <div>+</div>
           </Button>
 
           <Button
@@ -317,12 +317,12 @@ class Table extends Component {
             style={cellSize}
             onClick={() => this.addColumn()}
           >
-            +
+            <div>+</div>
           </Button>
 
           <table
             className={className}
-            onMouseOver={this.tableOnMouseOverHandler.bind(this)}
+            onMouseOver={this.tableOnMouseOverHandler}
             onMouseOut={() => this.setTimerHideButtons()}
           >
             {this.makeTable()}
