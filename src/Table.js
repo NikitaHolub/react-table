@@ -4,6 +4,7 @@ import Button from "./Button";
 
 class Table extends Component {
   constructor(props) {
+
     super(props);
 
     this.cellSize = {
@@ -14,13 +15,14 @@ class Table extends Component {
 
     this.timerHideButtons = {};
 
-
     this.state = {
       style: {
         buttonMinusRow: {
+          top: "0px",
           visibility: "hidden",
         },
         buttonMinusColumn: {
+          left: "0px",
           visibility: "hidden",
         },
       },
@@ -30,15 +32,17 @@ class Table extends Component {
       trKey: 1,
       tdKey: 1,
 
-
       currentRowNum: 0,
       currentColumnNum: 0,
-
       
     };
   }
 
     componentDidMount = () => {
+      this.buildInitialTable();
+    }
+
+    buildInitialTable = () => {
       const table = [];
       const {
         initialWidth,
@@ -173,28 +177,28 @@ class Table extends Component {
 
       if (target.tagName !== "TD") return;
 
-      this.showMinusButtons(target.offsetLeft, target.offsetTop);
-
       this.setState({
         currentRowNum: target.parentNode.rowIndex,
         currentColumnNum: target.cellIndex,
       });
+
+      this.showMinusButtons(target.offsetLeft, target.offsetTop);
     }
 
     hideMinusButtons = () => {
       const {
-        ButtonMinusColumn,
-        ButtonMinusRow,
+        buttonMinusColumn,
+        buttonMinusRow,
       } = this.state;
 
       this.setState({
         style: {
-          ButtonMinusColumn: {
-            ...ButtonMinusColumn,
+          buttonMinusColumn: {
+            ...buttonMinusColumn,
             visibility: "hidden",
           },
-          ButtonMinusRow: {
-            ...ButtonMinusRow,
+          buttonMinusRow: {
+            ...buttonMinusRow,
             visibility: "hidden",
           },
         },
@@ -210,48 +214,55 @@ class Table extends Component {
       const columnsInTable = table[0].length;
       const {
         style: {
-          ButtonMinusRow,
-          ButtonMinusColumn,
+          buttonMinusRow,
+          buttonMinusColumn,
         },
       } = this.state;
 
       if (rowsInTable !== 1 && columnsInTable !== 1) {
+        
         this.setState({
           style: {
-            ButtonMinusRow: {
-              ...ButtonMinusRow,
+            buttonMinusRow: {
+              ...buttonMinusRow,
               visibility: "visible",
               top: minusRowOffset,
             },
-            ButtonMinusColumn: {
-              ...ButtonMinusColumn,
+            buttonMinusColumn: {
+              ...buttonMinusColumn,
               visibility: "visible",
               left: minusColumnOffset,
             },
           },
         });
-      } else if (rowsInTable !== 1) {
+        
+        return;
+      }
+      if (rowsInTable !== 1) {
         this.setState({
           style: {
             ...style,
-            ButtonMinusRow: {
-              ...ButtonMinusRow,
+            buttonMinusRow: {
+              ...buttonMinusRow,
               visibility: "visible",
               top: minusRowOffset,
             },
           },
         });
-      } else if (columnsInTable !== 1) {
+        return;
+      } 
+      if (columnsInTable !== 1) {
         this.setState({
           style: {
             ...style,
-            ButtonMinusColumn: {
-              ...ButtonMinusColumn,
+            buttonMinusColumn: {
+              ...buttonMinusColumn,
               visibility: "visible",
               left: minusColumnOffset,
             },
           },
         });
+        return;
       }
     }
 
@@ -264,11 +275,10 @@ class Table extends Component {
     }
 
     render() {
-      console.log('sss');
       const {
         style: {
-          ButtonMinusRow,
-          ButtonMinusColumn,
+          buttonMinusRow,
+          buttonMinusColumn,
         },
       } = this.state;
 
@@ -283,7 +293,7 @@ class Table extends Component {
           <Button
             buttonPosition="BtnTop"
             buttonType="ButtonMinus"
-            style={ButtonMinusColumn}
+            style={buttonMinusColumn}
             onMouseOver={() => this.clearTimerHideButtons()}
             onMouseOut={() => this.setTimerHideButtons()}
             onClick={() => this.deleteColumn()}
@@ -294,7 +304,7 @@ class Table extends Component {
           <Button
             buttonPosition="BtnLeft"
             buttonType="ButtonMinus"
-            style={ButtonMinusRow}
+            style={buttonMinusRow}
             onMouseOver={() => this.clearTimerHideButtons()}
             onMouseOut={() => this.setTimerHideButtons()}
             onClick={() => this.deleteRow()}
